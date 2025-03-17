@@ -7,7 +7,7 @@ import streamlit as st
 # Change Name & Logo
 st.set_page_config(page_title="Disease Prediction", page_icon="⚕️")
 
-
+print(os.listdir())
 
 # Hiding Streamlit add-ons
 hide_st_style = """
