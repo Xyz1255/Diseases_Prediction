@@ -115,7 +115,7 @@ def load_model(filename):
         return None  # Return None if model file is missing
 
 if "models" not in st.session_state:
-    st.session_state[""] = {}
+    st.session_state["models"] = {}
 # Load models dynamically
 loaded_models = {
     'diabetes': load_model('diabetes_model.sav'),
