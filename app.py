@@ -129,9 +129,8 @@ if 'models' not in st.session_state or not st.session_state.models:
 
 st.write("Models loaded successfully!")  # Debugging step
 
-
-if 'models' not in st.session_state:
-    st.session_state.models = {}
+if "models" not in st.session_state:
+    st.session_state["models"] = {}
 
 # Load the saved models
 #models = {
