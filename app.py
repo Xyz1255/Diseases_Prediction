@@ -99,8 +99,8 @@ page_bg_img = f"""
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
-if os.path.exists(r"C:\Users\Maitri Chitania\OneDrive\Desktop\Technical\AICTE INTERSHIP\Models"):
-    base_dir = r"C:\Users\Maitri Chitania\OneDrive\Desktop\Technical\AICTE INTERSHIP\Models"
+if os.path.exists(r"C:\\Users\\Maitri Chitania\\OneDrive\\Desktop\\Technical\\AICTE INTERSHIP\\Models"):
+    base_dir = r"C:\\Users\\Maitri Chitania\\OneDrive\\Desktop\\Technical\\AICTE INTERSHIP\\Models"
 else:
     base_dir = os.path.join(os.getcwd(), "models")  # Adjust for Streamlit deployment
 
