@@ -154,27 +154,27 @@ def display_input(label, tooltip, key, type="number"):
     return st.number_input(label, key=key, help=tooltip, step=1)
 
 # Diabetes Prediction Page
-# if selected == 'Diabetes Prediction':
-#     st.title('Diabetes')
-#     st.write("Enter the following details to predict diabetes:")
+if selected == 'Diabetes Prediction':
+    st.title('Diabetes')
+    st.write("Enter the following details to predict diabetes:")
 
-#     Pregnancies = display_input('Number of Pregnancies', 'Enter number of times pregnant', 'Pregnancies')
-#     Glucose = display_input('Glucose Level', 'Enter glucose level', 'Glucose')
-#     BloodPressure = display_input('Blood Pressure value', 'Enter blood pressure value', 'BloodPressure')
-#     SkinThickness = display_input('Skin Thickness value', 'Enter skin thickness value', 'SkinThickness')
-#     Insulin = display_input('Insulin Level', 'Enter insulin level', 'Insulin')
-#     BMI = display_input('BMI value', 'Enter Body Mass Index value', 'BMI')
-#     DiabetesPedigreeFunction = display_input('Diabetes Pedigree Function value', 'Enter diabetes pedigree function value', 'DiabetesPedigreeFunction')
-#     Age = display_input('Age of the Person', 'Enter age of the person', 'Age')
+    Pregnancies = display_input('Number of Pregnancies', 'Enter number of times pregnant', 'Pregnancies')
+    Glucose = display_input('Glucose Level', 'Enter glucose level', 'Glucose')
+    BloodPressure = display_input('Blood Pressure value', 'Enter blood pressure value', 'BloodPressure')
+    SkinThickness = display_input('Skin Thickness value', 'Enter skin thickness value', 'SkinThickness')
+    Insulin = display_input('Insulin Level', 'Enter insulin level', 'Insulin')
+    BMI = display_input('BMI value', 'Enter Body Mass Index value', 'BMI')
+    DiabetesPedigreeFunction = display_input('Diabetes Pedigree Function value', 'Enter diabetes pedigree function value', 'DiabetesPedigreeFunction')
+    Age = display_input('Age of the Person', 'Enter age of the person', 'Age')
 
-#     diab_diagnosis = ''
-#     if st.button('Diabetes Test Result'):
-#         if 'diabetes' not in st.session_state.models or st.session_state.models['diabetes'] is None:
-#             st.error("Diabetes model is not available!")
-#         else:
-#             diab_prediction = st.session_state.models['diabetes'].predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
-#             diab_diagnosis = 'The person is diabetic' if diab_prediction[0] == 1 else 'The person is not diabetic'
-#             st.success(diab_diagnosis)
+    diab_diagnosis = ''
+    if st.button('Diabetes Test Result'):
+        if 'diabetes' not in st.session_state.models or st.session_state.models['diabetes'] is None:
+            st.error("Diabetes model is not available!")
+        else:
+            diab_prediction = st.session_state.models['diabetes'].predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
+            diab_diagnosis = 'The person is diabetic' if diab_prediction[0] == 1 else 'The person is not diabetic'
+            st.success(diab_diagnosis)
 
 # Heart Disease Prediction Page
 if selected == 'Heart Disease Prediction':
@@ -197,7 +197,7 @@ if selected == 'Heart Disease Prediction':
 
     heart_diagnosis = ''
     if st.button('Heart Disease Test Result'):
-        heart_prediction = st.session_state.models['heart_disease'].predict([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
+        heart_prediction = models['heart_disease'].predict([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
         heart_diagnosis = 'The person has heart disease' if heart_prediction[0] == 1 else 'The person does not have heart disease'
         st.success(heart_diagnosis)
 
