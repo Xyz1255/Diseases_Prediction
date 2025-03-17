@@ -114,6 +114,8 @@ def load_model(filename):
         print(f"Warning: Model file '{filename}' not found.")
         return None  # Return None if model file is missing
 
+if "models" not in st.session_state:
+    st.session_state["models"] = {}
 # Load models dynamically
 loaded_models = {
     'diabetes': load_model('diabetes_model.sav'),
@@ -123,14 +125,10 @@ loaded_models = {
     'thyroid': load_model('Thyroid_model.sav')
 }
 
-# Store models in session state if not already stored
-if 'models' not in st.session_state or not st.session_state.models:
-    st.session_state.models = loaded_models
+st.session_state.models.update(loaded_models)
 
 st.write("Models loaded successfully!")  # Debugging step
 
-if "models" not in st.session_state:
-    st.session_state["models"] = {}
 
 # Load the saved models
 #models = {
