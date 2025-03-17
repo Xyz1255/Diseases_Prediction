@@ -7,6 +7,9 @@ import streamlit as st
 # Change Name & Logo
 st.set_page_config(page_title="Disease Prediction", page_icon="⚕️")
 
+if 'models' not in st.session_state:
+    st.session_state.models = {}
+
 
 # Hiding Streamlit add-ons
 hide_st_style = """
