@@ -99,18 +99,30 @@ page_bg_img = f"""
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 
-# Define the base directory where models are stored
-base_dir = r"C:\Users\Maitri Chitania\OneDrive\Desktop\Technical\AICTE INTERSHIP\Models"
+# Use the correct path dynamically based on deployment
+if os.path.exists(r"C:\Users\Maitri Chitania\OneDrive\Desktop\Technical\AICTE INTERSHIP\Models"):
+    base_dir = r"C:\Users\Maitri Chitania\OneDrive\Desktop\Technical\AICTE INTERSHIP\Models"
+else:
+    base_dir = os.path.join(os.getcwd(), "models")  # Adjust for Streamlit deployment
 
-# Load the saved models dynamically
+# Function to load models safely
+def load_model(filename):
+    filepath = os.path.join(base_dir, filename)
+    if os.path.exists(filepath):
+        with open(filepath, "rb") as f:
+            return pickle.load(f)
+    else:
+        print(f"Warning: Model file '{filename}' not found.")
+        return None  # Return None if model file is missing
+
+# Load models dynamically
 models = {
-    'diabetes': pickle.load(open(os.path.join(base_dir, 'diabetes_model.sav'), 'rb')),
-    'heart_disease': pickle.load(open(os.path.join(base_dir, 'heart_disease_model.sav'), 'rb')),
-    'parkinsons': pickle.load(open(os.path.join(base_dir, 'parkinsons_model.sav'), 'rb')),
-    'lung_cancer': pickle.load(open(os.path.join(base_dir, 'lungs_disease_model.sav'), 'rb')),
-    'thyroid': pickle.load(open(os.path.join(base_dir, 'Thyroid_model.sav'), 'rb'))
+    'diabetes': load_model('diabetes_model.sav'),
+    'heart_disease': load_model('heart_disease_model.sav'),
+    'parkinsons': load_model('parkinsons_model.sav'),
+    'lung_cancer': load_model('lungs_disease_model.sav'),
+    'thyroid': load_model('Thyroid_model.sav')
 }
-
 print("Models loaded successfully!")
 
 
