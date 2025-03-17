@@ -99,8 +99,6 @@ page_bg_img = f"""
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
-
-# Use the correct path dynamically based on deployment
 if os.path.exists(r"C:\Users\Maitri Chitania\OneDrive\Desktop\Technical\AICTE INTERSHIP\Models"):
     base_dir = r"C:\Users\Maitri Chitania\OneDrive\Desktop\Technical\AICTE INTERSHIP\Models"
 else:
@@ -117,14 +115,19 @@ def load_model(filename):
         return None  # Return None if model file is missing
 
 # Load models dynamically
-models = {
+loaded_models = {
     'diabetes': load_model('diabetes_model.sav'),
     'heart_disease': load_model('heart_disease_model.sav'),
     'parkinsons': load_model('parkinsons_model.sav'),
     'lung_cancer': load_model('lungs_disease_model.sav'),
     'thyroid': load_model('Thyroid_model.sav')
 }
-print("Models loaded successfully!")
+
+# Store models in session state if not already stored
+if 'models' not in st.session_state or not st.session_state.models:
+    st.session_state.models = loaded_models
+
+st.write("Models loaded successfully!")  # Debugging step
 
 
 if 'models' not in st.session_state:
@@ -140,6 +143,7 @@ if 'models' not in st.session_state:
 #}
 
 # Create a dropdown menu for disease prediction
+# Create a dropdown menu for disease prediction
 selected = st.selectbox(
     'Select a Disease to Predict',
     ['Diabetes Prediction',
@@ -149,25 +153,22 @@ selected = st.selectbox(
      'Hypo-Thyroid Prediction']
 )
 
-def display_input(label, tooltip, key, type="text"):
-    if type == "text":
-        return st.text_input(label, key=key, help=tooltip)
-    elif type == "number":
-        return st.number_input(label, key=key, help=tooltip, step=1)
+def display_input(label, tooltip, key, type="number"):
+    return st.number_input(label, key=key, help=tooltip, step=1)
 
 # Diabetes Prediction Page
 if selected == 'Diabetes Prediction':
     st.title('Diabetes')
     st.write("Enter the following details to predict diabetes:")
 
-    Pregnancies = display_input('Number of Pregnancies', 'Enter number of times pregnant', 'Pregnancies', 'number')
-    Glucose = display_input('Glucose Level', 'Enter glucose level', 'Glucose', 'number')
-    BloodPressure = display_input('Blood Pressure value', 'Enter blood pressure value', 'BloodPressure', 'number')
-    SkinThickness = display_input('Skin Thickness value', 'Enter skin thickness value', 'SkinThickness', 'number')
-    Insulin = display_input('Insulin Level', 'Enter insulin level', 'Insulin', 'number')
-    BMI = display_input('BMI value', 'Enter Body Mass Index value', 'BMI', 'number')
-    DiabetesPedigreeFunction = display_input('Diabetes Pedigree Function value', 'Enter diabetes pedigree function value', 'DiabetesPedigreeFunction', 'number')
-    Age = display_input('Age of the Person', 'Enter age of the person', 'Age', 'number')
+    Pregnancies = display_input('Number of Pregnancies', 'Enter number of times pregnant', 'Pregnancies')
+    Glucose = display_input('Glucose Level', 'Enter glucose level', 'Glucose')
+    BloodPressure = display_input('Blood Pressure value', 'Enter blood pressure value', 'BloodPressure')
+    SkinThickness = display_input('Skin Thickness value', 'Enter skin thickness value', 'SkinThickness')
+    Insulin = display_input('Insulin Level', 'Enter insulin level', 'Insulin')
+    BMI = display_input('BMI value', 'Enter Body Mass Index value', 'BMI')
+    DiabetesPedigreeFunction = display_input('Diabetes Pedigree Function value', 'Enter diabetes pedigree function value', 'DiabetesPedigreeFunction')
+    Age = display_input('Age of the Person', 'Enter age of the person', 'Age')
 
     diab_diagnosis = ''
     if st.button('Diabetes Test Result'):
