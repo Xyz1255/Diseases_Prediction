@@ -7,8 +7,6 @@ import streamlit as st
 # Change Name & Logo
 st.set_page_config(page_title="Disease Prediction", page_icon="⚕️")
 
-if 'models' not in st.session_state:
-    st.session_state.models = {}
 
 
 # Hiding Streamlit add-ons
@@ -129,6 +127,8 @@ models = {
 print("Models loaded successfully!")
 
 
+if 'models' not in st.session_state:
+    st.session_state.models = {}
 
 # Load the saved models
 #models = {
