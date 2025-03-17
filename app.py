@@ -168,9 +168,12 @@ if selected == 'Diabetes Prediction':
 
     diab_diagnosis = ''
     if st.button('Diabetes Test Result'):
-        diab_prediction = models['diabetes'].predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
-        diab_diagnosis = 'The person is diabetic' if diab_prediction[0] == 1 else 'The person is not diabetic'
-        st.success(diab_diagnosis)
+        if 'diabetes' not in st.session_state.models or st.session_state.models['diabetes'] is None:
+            st.error("Diabetes model is not available!")
+        else:
+            diab_prediction = st.session_state.models['diabetes'].predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
+            diab_diagnosis = 'The person is diabetic' if diab_prediction[0] == 1 else 'The person is not diabetic'
+            st.success(diab_diagnosis)
 
 # Heart Disease Prediction Page
 if selected == 'Heart Disease Prediction':
