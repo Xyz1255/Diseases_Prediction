@@ -6,102 +6,95 @@ import streamlit as st
 
 # Change Name & Logo
 st.set_page_config(page_title="Disease Prediction", page_icon="⚕️")
+import streamlit as st
 
+# Debugging: List directory files in terminal/log
 print(os.listdir())
 
-# Hiding Streamlit add-ons
+# Hide Streamlit UI Elements
 hide_st_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
-# st.markdown(hide_st_style, unsafe_allow_html=True)
-# st.markdown("<h1 style='color: white; text-align: center;'>Disease Prediction System</h1>", unsafe_allow_html=True)
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    </style>
+    """
+
+# Background Image with Scroll Support
+page_bg_img = f"""
+    <style>
+    .stApp {{
+        background: url("https://www.shutterstock.com/image-photo/doctor-utilizing-advanced-digital-tablet-600nw-2481904799.jpg") no-repeat center center fixed;
+        background-size: cover;
+    }}
+    </style>
+    """
+
+# Apply styles
+st.markdown(hide_st_style, unsafe_allow_html=True)
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
+
+
+
+# Custom CSS for aesthetics
 st.markdown(
-    "<h1 style='color: white; text-align: center; font-weight: bold; margin: 0;'>Disease Prediction System</h1>", 
+    """
+    <style>
+    /* Background Image */
+    .stApp {
+        background: url('https://source.unsplash.com/1600x900/?medical,hospital') no-repeat center center fixed;
+        background-size: cover;
+    }
+    
+    /* Title Styling */
+    .title {
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+        color: white;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        margin-bottom: 20px;
+    }
+
+    /* Container for better readability */
+    .content-box {
+        background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+        padding: 30px;
+        border-radius: 15px;
+        color: white;
+        max-width: 700px;
+        margin: auto;
+    }
+
+    /* Customize input widgets */
+    .stSelectbox, .stSlider {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        color: white;
+    }
+    </style>
+    """,
     unsafe_allow_html=True
 )
 
-st.markdown("""
-    <style>
-    /* Make input fields black with transparency */
-    input[type="text"], input[type="number"], select {
-        background-color: rgba(0, 0, 0, 0.7) !important; /* 70% opacity */
-        color: white !important;
-        font-size: 18px !important;
-        border: 2px solid white !important;
-        padding: 10px !important;
-        border-radius: 5px !important;
-    }
+# Title
+st.markdown("<div class='title'>Disease Prediction System</div>", unsafe_allow_html=True)
 
-    /* Fix dropdown background issue */
-    div[data-testid="stSelectbox"] div {
-        background-color: white !important; /* Keep dropdown background white */
-        color: black !important;
-    }
+# Main Content Box
+st.markdown("<div class='content-box'>", unsafe_allow_html=True)
 
-    /* Make only selected dropdown option black with white text */
-    div[data-testid="stSelectbox"] select {
-        background-color: rgba(0, 0, 0, 0.7) !important;
-        color: white !important;
-    }
+st.write("### Select a Disease to Predict")
+disease = st.selectbox("", ["Diabetes Prediction", "Heart Disease Prediction"])
 
-    /* Increase label size and color */
-    div[data-testid="stWidgetLabel"] label {
-        font-size: 20px !important;
-        color: white !important;
-        font-weight: bold !important;
-    }
+st.write("### Enter the following details:")
+pregnancies = st.slider("Number of Pregnancies", 0, 10, 1)
+glucose = st.slider("Glucose Level", 0, 200, 100)
+bp = st.slider("Blood Pressure value", 0, 180, 80)
 
-    /* Style the plus-minus button */
-    button[aria-label="Increment"], button[aria-label="Decrement"] {
-        background-color: rgba(0, 0, 0, 0.7) !important; /* Black with 70% opacity */
-        color: white !important;
-        border: 2px solid white !important;
-    }
-
-    </style>
-    """, unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)  # Close content box
 
 
-
-# Adding Background Image with Scroll Support
-background_image_url = "https://www.shutterstock.com/image-photo/doctor-utilizing-advanced-digital-tablet-600nw-2481904799.jpg"
-
-page_bg_img = f"""
-<style>
-[data-testid="stAppViewContainer"] {{
-    background-image: url({background_image_url});
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}}
-
-[data-testid="stAppViewContainer"]::before {{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: -1;
-}}
-
-# .scrollable-container {{
-#     height: 80vh; /* 80% of viewport height */
-#     overflow-y: auto; /* Enable scrolling */
-#     padding: 10px;
-#     background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-#     border-radius: 10px;
-# }} 
-</style>
-"""
-
-st.markdown(page_bg_img, unsafe_allow_html=True)
 
 if os.path.exists(r"Models"):
     base_dir = r"Models"
