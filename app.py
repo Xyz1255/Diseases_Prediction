@@ -51,15 +51,15 @@ st.markdown(
         color: white;
         text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     }
-    /* Title Styling */
-    .title {
-        font-size: 50px;
-        font-weight: bold;
-        text-align: center;
-        color: white;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-        margin-bottom: 20px;
-    }
+    # /* Title Styling */
+    # .title {
+    #     font-size: 50px;
+    #     font-weight: bold;
+    #     text-align: center;
+    #     color: white;
+    #     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    #     margin-bottom: 20px;
+    # }
 
     /* Content Box for Readability */
     .content-box {
