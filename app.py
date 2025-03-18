@@ -61,15 +61,15 @@ st.markdown(
     #     margin-bottom: 20px;
     # }
 
-    /* Content Box for Readability */
-    .content-box {
-        background: rgba(0, 0, 0, 0.6);
-        padding: 30px;
-        border-radius: 15px;
-        color: white;
-        max-width: 700px;
-        margin: auto;
-    }
+    # /* Content Box for Readability */
+    # .content-box {
+    #     background: rgba(0, 0, 0, 0.6);
+    #     padding: 30px;
+    #     border-radius: 15px;
+    #     color: white;
+    #     max-width: 700px;
+    #     margin: auto;
+    # }
 
     /* Adjust Streamlit sliders */
     div[data-testid="stSlider"] {
