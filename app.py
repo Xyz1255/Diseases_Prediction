@@ -8,8 +8,7 @@ import streamlit as st
 st.set_page_config(page_title="Disease Prediction", page_icon="⚕️")
 import streamlit as st
 
-# Debugging: List directory files in terminal/log
-print(os.listdir())
+import streamlit as st
 
 # Hide Streamlit UI Elements
 hide_st_style = """
@@ -19,34 +18,23 @@ hide_st_style = """
     header {visibility: hidden;}
     </style>
     """
+st.markdown(hide_st_style, unsafe_allow_html=True)
 
 # Background Image with Scroll Support
-page_bg_img = f"""
+page_bg_img = """
     <style>
-    .stApp {{
+    .stApp {
         background: url("https://www.shutterstock.com/image-photo/doctor-utilizing-advanced-digital-tablet-600nw-2481904799.jpg") no-repeat center center fixed;
         background-size: cover;
-    }}
+    }
     </style>
     """
-
-# Apply styles
-st.markdown(hide_st_style, unsafe_allow_html=True)
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
-
-
-
-# Custom CSS for aesthetics
+# Aesthetic Enhancements
 st.markdown(
     """
     <style>
-    /* Background Image */
-    .stApp {
-        background: url('https://source.unsplash.com/1600x900/?medical,hospital') no-repeat center center fixed;
-        background-size: cover;
-    }
-    
     /* Title Styling */
     .title {
         font-size: 50px;
@@ -57,9 +45,9 @@ st.markdown(
         margin-bottom: 20px;
     }
 
-    /* Container for better readability */
+    /* Content Box for Readability */
     .content-box {
-        background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+        background: rgba(0, 0, 0, 0.6);
         padding: 30px;
         border-radius: 15px;
         color: white;
@@ -67,11 +55,11 @@ st.markdown(
         margin: auto;
     }
 
-    /* Customize input widgets */
-    .stSelectbox, .stSlider {
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 5px;
-        color: white;
+    /* Adjust Streamlit sliders */
+    div[data-testid="stSlider"] {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 10px;
+        border-radius: 10px;
     }
     </style>
     """,
@@ -83,11 +71,14 @@ st.markdown("<div class='title'>Disease Prediction System</div>", unsafe_allow_h
 
 # Main Content Box
 st.markdown("<div class='content-box'>", unsafe_allow_html=True)
+st.markdown("### Select a Disease to Predict", unsafe_allow_html=True)
 
-st.write("### Select a Disease to Predict")
+# Keep Streamlit elements outside markdown to avoid duplication
 disease = st.selectbox("", ["Diabetes Prediction", "Heart Disease Prediction"])
 
-st.write("### Enter the following details:")
+st.markdown("### Enter the following details:", unsafe_allow_html=True)
+
+# Keep Sliders Outside Styled Markup
 pregnancies = st.slider("Number of Pregnancies", 0, 10, 1)
 glucose = st.slider("Glucose Level", 0, 200, 100)
 bp = st.slider("Blood Pressure value", 0, 180, 80)
