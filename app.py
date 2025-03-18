@@ -33,6 +33,24 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 st.markdown(
     """
     <style>
+
+    .title-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80px; /* Adjust height to match the black box */
+        width: 100%;
+        background: rgba(0, 0, 0, 0.6); /* Keep black box */
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .title-text {
+        font-size: 35px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    }
     /* Title Styling */
     .title {
         font-size: 50px;
@@ -59,10 +77,15 @@ st.markdown(
         padding: 10px;
         border-radius: 10px;
     }
+
     </style>
+ <div class="title-container">
+        <span class="title-text">Disease Prediction System</span>
+    </div>
     """,
     unsafe_allow_html=True
 )
+
 
 # Title
 st.markdown("<div class='title'>Disease Prediction System</div>", unsafe_allow_html=True)
