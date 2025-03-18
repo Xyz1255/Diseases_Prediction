@@ -18,7 +18,11 @@ hide_st_style = """
             </style>
             """
 # st.markdown(hide_st_style, unsafe_allow_html=True)
-st.markdown("<h1 style='color: white; text-align: center;'>Disease Prediction System</h1>", unsafe_allow_html=True)
+# st.markdown("<h1 style='color: white; text-align: center;'>Disease Prediction System</h1>", unsafe_allow_html=True)
+st.markdown(
+    "<h1 style='color: white; text-align: center; font-weight: bold; margin: 0;'>Disease Prediction System</h1>", 
+    unsafe_allow_html=True
+)
 
 st.markdown("""
     <style>
