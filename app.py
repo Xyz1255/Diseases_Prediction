@@ -8,8 +8,6 @@ import streamlit as st
 st.set_page_config(page_title="Disease Prediction", page_icon="⚕️")
 import streamlit as st
 
-import streamlit as st
-
 # Hide Streamlit UI Elements
 hide_st_style = """
     <style>
@@ -73,22 +71,19 @@ st.markdown("<div class='title'>Disease Prediction System</div>", unsafe_allow_h
 st.markdown("<div class='content-box'>", unsafe_allow_html=True)
 st.markdown("### Select a Disease to Predict", unsafe_allow_html=True)
 
-# Keep Streamlit elements outside markdown to avoid duplication
-disease = st.selectbox("", ["Diabetes Prediction", "Heart Disease Prediction"])
+# ✅ Only ONE Select Box to Avoid Duplicates
+selected = st.selectbox(
+    '',
+    ['Diabetes Prediction', 'Heart Disease Prediction', 'Parkinsons Prediction', 'Lung Cancer Prediction', 'Hypo-Thyroid Prediction']
+)
 
 st.markdown("### Enter the following details:", unsafe_allow_html=True)
 
-# Keep Sliders Outside Styled Markup
-pregnancies = st.slider("Number of Pregnancies", 0, 10, 1)
-glucose = st.slider("Glucose Level", 0, 200, 100)
-bp = st.slider("Blood Pressure value", 0, 180, 80)
+# ✅ Remove any other duplicate st.selectbox() before loading models
 
-st.markdown("</div>", unsafe_allow_html=True)  # Close content box
-
-
-
-if os.path.exists(r"Models"):
-    base_dir = r"Models"
+# ------------------------ Model Loading ------------------------
+if os.path.exists("Models"):
+    base_dir = "Models"
 else:
     base_dir = os.path.join(os.getcwd(), "models")  # Adjust for Streamlit deployment
 
@@ -104,6 +99,7 @@ def load_model(filename):
 
 if "models" not in st.session_state:
     st.session_state["models"] = {}
+
 # Load models dynamically
 loaded_models = {
     'diabetes': load_model('diabetes_model.sav'),
@@ -117,26 +113,6 @@ st.session_state.models.update(loaded_models)
 
 st.write("Models loaded successfully!")  # Debugging step
 
-
-# Load the saved models
-#models = {
-    # 'diabetes': pickle.load(open('Models/diabetes_model.sav', 'rb')),
-    #'heart_disease': pickle.load(open('Models/heart_disease_model.sav', 'rb')),
-   # 'parkinsons': pickle.load(open('Models/parkinsons_model.sav', 'rb')),
-  #  'lung_cancer': pickle.load(open('Models/lungs_disease_model.sav', 'rb')),
- #   'thyroid': pickle.load(open('Models/Thyroid_model.sav', 'rb'))
-#}
-
-# Create a dropdown menu for disease prediction
-# Create a dropdown menu for disease prediction
-selected = st.selectbox(
-    'Select a Disease to Predict',
-    ['Diabetes Prediction',
-     'Heart Disease Prediction',
-     'Parkinsons Prediction',
-     'Lung Cancer Prediction',
-     'Hypo-Thyroid Prediction']
-)
 
 def display_input(label, tooltip, key, type="number"):
     return st.number_input(label, key=key, help=tooltip, step=1)
