@@ -77,7 +77,7 @@ selected = st.selectbox(
     ['Diabetes Prediction', 'Heart Disease Prediction', 'Parkinsons Prediction', 'Lung Cancer Prediction', 'Hypo-Thyroid Prediction']
 )
 
-st.markdown("### Enter the following details:", unsafe_allow_html=True)
+# st.markdown("### Enter the following details:", unsafe_allow_html=True)
 
 # ✅ Remove any other duplicate st.selectbox() before loading models
 
@@ -110,7 +110,7 @@ loaded_models = {
 
 st.session_state.models.update(loaded_models)
 
-st.write("Models loaded successfully!")  # Debugging step
+# st.write("Models loaded successfully!")  # Debugging step
 
 
 def display_input(label, tooltip, key, type="number"):
