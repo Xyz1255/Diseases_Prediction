@@ -90,9 +90,9 @@ st.markdown(
 # Title
 st.markdown("<div class='title'>Disease Prediction System</div>", unsafe_allow_html=True)
 
-# Main Content Box
-st.markdown("<div class='content-box'>", unsafe_allow_html=True)
-st.markdown("### Select a Disease to Predict", unsafe_allow_html=True)
+# # Main Content Box
+# st.markdown("<div class='content-box'>", unsafe_allow_html=True)
+# st.markdown("### Select a Disease to Predict", unsafe_allow_html=True)
 
 # ✅ Only ONE Select Box to Avoid Duplicates
 selected = st.selectbox(
