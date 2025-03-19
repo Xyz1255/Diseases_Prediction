@@ -187,7 +187,7 @@ if selected == 'Heart Disease Prediction':
             st.error("Heart disease model is not available!")
     else:
         heart_prediction = st.session_state.models['heart_disease'].predict([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
-        heart_diagnosis = 'The person has heart disease' # if heart_prediction[0] == 1 else 'The person does not have heart disease'
+        heart_diagnosis = 'The person has heart disease' if heart_prediction[0] == 1 else 'The person does not have heart disease'
         st.success(heart_diagnosis)
 
 # Parkinson's Prediction Page
