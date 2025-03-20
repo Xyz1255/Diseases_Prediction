@@ -80,7 +80,7 @@ st.markdown(
 
     </style>
  <div class="title-container">
-        <span class="title-text">Disease Prediction System</span>
+        <span class="title-text">SmartDiagnose</span>
     </div>
     """,
     unsafe_allow_html=True
@@ -88,7 +88,7 @@ st.markdown(
 
 
 # Title
-st.markdown("<div class='title'>Disease Prediction System</div>", unsafe_allow_html=True)
+st.markdown("<div class='title'>SmartDiagnose</div>", unsafe_allow_html=True)
 
 # Main Content Box
 st.markdown("<div class='content-box'>", unsafe_allow_html=True)
