@@ -220,9 +220,12 @@ if selected == "Parkinsons Prediction":
 
     parkinsons_diagnosis = ''
     if st.button("Parkinson's Test Result"):
-        parkinsons_prediction = models['parkinsons'].predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5, APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]])
-        parkinsons_diagnosis = "The person has Parkinson's disease" if parkinsons_prediction[0] == 1 else "The person does not have Parkinson's disease"
-        st.success(parkinsons_diagnosis)
+        if 'parkinsons' not in st.session_state.models or st.session_state.models['parkinsons'] is None:
+            st.error("Heart disease model is not available!")
+        else:
+            parkinsons_prediction = st.session_state.models['parkinsons'].predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5, APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]])
+            parkinsons_diagnosis = "The person has Parkinson's disease" if parkinsons_prediction[0] == 1 else "The person does not have Parkinson's disease"
+            st.success(parkinsons_diagnosis)
 
 # Lung Cancer Prediction Page
 if selected == "Lung Cancer Prediction":
