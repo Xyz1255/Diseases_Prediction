@@ -250,9 +250,12 @@ if selected == "Lung Cancer Prediction":
 
     lungs_diagnosis = ''
     if st.button("Lung Cancer Test Result"):
-        lungs_prediction = models['lung_cancer'].predict([[GENDER, AGE, SMOKING, YELLOW_FINGERS, ANXIETY, PEER_PRESSURE, CHRONIC_DISEASE, FATIGUE, ALLERGY, WHEEZING, ALCOHOL_CONSUMING, COUGHING, SHORTNESS_OF_BREATH, SWALLOWING_DIFFICULTY, CHEST_PAIN]])
-        lungs_diagnosis = "The person has lung cancer disease" if lungs_prediction[0] == 1 else "The person does not have lung cancer disease"
-        st.success(lungs_diagnosis)
+        if 'lung_cancer' not in st.session_state.models or st.session_state.models['lung_cancer'] is None:
+            st.error("Lung Cancer model is not available!")
+        else:
+            lungs_prediction = st.session_state.models['lung_cancer'].predict([[GENDER, AGE, SMOKING, YELLOW_FINGERS, ANXIETY, PEER_PRESSURE, CHRONIC_DISEASE, FATIGUE, ALLERGY, WHEEZING, ALCOHOL_CONSUMING, COUGHING, SHORTNESS_OF_BREATH, SWALLOWING_DIFFICULTY, CHEST_PAIN]])
+            lungs_diagnosis = "The person has lung cancer disease" if lungs_prediction[0] == 1 else "The person does not have lung cancer disease"
+            st.success(lungs_diagnosis)
 
 # Hypo-Thyroid Prediction Page
 if selected == "Hypo-Thyroid Prediction":
@@ -269,6 +272,9 @@ if selected == "Hypo-Thyroid Prediction":
 
     thyroid_diagnosis = ''
     if st.button("Thyroid Test Result"):
-        thyroid_prediction = models['thyroid'].predict([[age, sex, on_thyroxine, tsh, t3_measured, t3, tt4]])
-        thyroid_diagnosis = "The person has Hypo-Thyroid disease" if thyroid_prediction[0] == 1 else "The person does not have Hypo-Thyroid disease"
-        st.success(thyroid_diagnosis)
+        if 'thyroid' not in st.session_state.models or st.session_state.models['thyroid'] is None:
+            st.error("Lung Cancer model is not available!")
+        else:
+            thyroid_prediction = st.session_state.models['thyroid'].predict([[age, sex, on_thyroxine, tsh, t3_measured, t3, tt4]])
+            thyroid_diagnosis = "The person has Hypo-Thyroid disease" if thyroid_prediction[0] == 1 else "The person does not have Hypo-Thyroid disease"
+            st.success(thyroid_diagnosis)
